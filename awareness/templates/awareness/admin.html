@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CyberShield Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e16;--bg2:#0f1520;--bg3:#141c2a;
+  --border:#1e2d45;--text:#d8e4f5;--muted:#5a7090;
+  --green:#1faa5e;--red:#d93b3b;--blue:#2d7dd2;--yellow:#d4a017;
+  --serif:'DM Serif Display',serif;--sans:'DM Sans',sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+nav{padding:16px 32px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--bg2)}
+.logo{font-family:var(--serif);font-size:1.1rem;color:var(--text)}
+.logo span{color:var(--green)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.badge-live{background:rgba(31,170,94,.12);border:1px solid rgba(31,170,94,.25);color:var(--green);font-size:.7rem;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:5px}
+.live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.btn-back{background:transparent;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:6px;font-size:.78rem;text-decoration:none;transition:all .2s}
+.btn-back:hover{border-color:var(--muted);color:var(--text)}
+
+main{padding:32px;max-width:1200px;margin:0 auto}
+h2{font-family:var(--serif);font-size:1.5rem;color:var(--text);margin-bottom:4px}
+.sub-head{font-size:.82rem;color:var(--muted);margin-bottom:28px}
+
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 22px}
+.kpi-label{font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.kpi-val{font-family:var(--serif);font-size:2.2rem;color:var(--text);margin-bottom:2px}
+.kpi-sub{font-size:.72rem;color:var(--muted)}
+.kpi.green .kpi-val{color:var(--green)}
+.kpi.red .kpi-val{color:var(--red)}
+.kpi.blue .kpi-val{color:var(--blue)}
+.kpi.yellow .kpi-val{color:var(--yellow)}
+
+/* GRID LAYOUT */
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.dash-grid.three{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:820px){.dash-grid,.dash-grid.three{grid-template-columns:1fr}}
+
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:22px}
+.card-title{font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+
+/* BAR CHART */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bar-label{font-size:.78rem;color:var(--muted);min-width:80px;text-align:right}
+.bar-track{flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.25,.8,.25,1)}
+.bar-count{font-size:.72rem;color:var(--muted);min-width:28px;text-align:right}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;padding:0 8px 10px 0;border-bottom:1px solid var(--border)}
+td{padding:10px 8px 10px 0;border-bottom:1px solid rgba(30,45,69,.5);color:var(--text)}
+td:last-child,th:last-child{text-align:right;padding-right:0}
+.badge{font-size:.62rem;padding:2px 8px;border-radius:100px;font-weight:600;white-space:nowrap}
+.badge-green{background:rgba(31,170,94,.12);color:var(--green)}
+.badge-red{background:rgba(217,59,59,.1);color:#e06060}
+.badge-blue{background:rgba(45,125,210,.12);color:var(--blue)}
+.badge-yellow{background:rgba(212,160,23,.1);color:var(--yellow)}
+
+/* DISTRIBUTION */
+.dist-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.dist-label{font-size:.76rem;color:var(--muted);min-width:60px}
+.dist-bar{flex:1;height:20px;background:var(--bg3);border-radius:4px;overflow:hidden;position:relative}
+.dist-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:.7rem;font-weight:600;transition:width .8s cubic-bezier(.25,.8,.25,1)}
+.dist-count{font-size:.72rem;color:var(--muted);min-width:24px;text-align:right}
+
+.refresh-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:6px;font-size:.75rem;cursor:pointer;transition:all .2s;font-family:var(--sans)}
+.refresh-btn:hover{border-color:var(--green);color:var(--green)}
+.last-updated{font-size:.7rem;color:var(--muted);margin-top:8px}
+
+.empty{text-align:center;color:var(--muted);font-size:.82rem;padding:24px 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Cyber<span>Shield</span> <span style="font-family:var(--sans);font-size:.8rem;color:var(--muted);font-weight:400;margin-left:8px">Dashboard</span></div>
+  <div class="nav-right">
+    <div class="badge-live"><span class="live-dot"></span>Live</div>
+    <button class="refresh-btn" onclick="loadStats()">↻ Refresh</button>
+    <a class="btn-back" href="/">← Back to Site</a>
+  </div>
+</nav>
+
+<main>
+  <h2>Awareness Overview</h2>
+  <p class="sub-head" id="last-updated">Loading data…</p>
+
+  <!-- KPIs -->
+  <div class="kpi-grid" id="kpi-grid">
+    <div class="kpi green"><div class="kpi-label">Subscribers</div><div class="kpi-val" id="k-subs">—</div><div class="kpi-sub">Newsletter signups</div></div>
+    <div class="kpi blue"><div class="kpi-label">Quiz Attempts</div><div class="kpi-val" id="k-attempts">—</div><div class="kpi-sub">Total quiz submissions</div></div>
+    <div class="kpi yellow"><div class="kpi-label">Avg Quiz Score</div><div class="kpi-val" id="k-avg">—</div><div class="kpi-sub">Global average %</div></div>
+    <div class="kpi red"><div class="kpi-label">Threat Reports</div><div class="kpi-val" id="k-reports">—</div><div class="kpi-sub">Community submissions</div></div>
+    <div class="kpi"><div class="kpi-label">Page Visits</div><div class="kpi-val" id="k-visits">—</div><div class="kpi-sub">Section engagements</div></div>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="dash-grid">
+    <div class="card">
+      <div class="card-title">Quiz score distribution</div>
+      <div id="dist-chart"><div class="empty">No data yet</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top threat types reported</div>
+      <div id="threats-chart"><div class="empty">No reports yet</div></div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="dash-grid">
+    <div class="card">
+      <div class="card-title">Recent quiz results</div>
+      <div id="quiz-table"><div class="empty">No submissions yet</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Recent threat reports</div>
+      <div id="reports-table"><div class="empty">No reports yet</div></div>
+    </div>
+  </div>
+
+  <!-- Section engagement -->
+  <div class="card" style="margin-top:16px">
+    <div class="card-title">Section engagement</div>
+    <div id="sections-chart"><div class="empty">No visits tracked yet</div></div>
+  </div>
+</main>
+
+<script>
+const BADGE_COLORS = {
+  phishing:'badge-red', scam:'badge-red', malware:'badge-red',
+  ransomware:'badge-red', impersonation:'badge-yellow',
+  public_wifi:'badge-blue', other:'badge-blue'
+};
+
+function scoreColor(pct) {
+  if (pct >= 80) return 'var(--green)';
+  if (pct >= 60) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+async function loadStats() {
+  document.getElementById('last-updated').textContent = 'Loading…';
+  try {
+    const r = await fetch('/api/stats/');
+    const d = await r.json();
+
+    // KPIs
+    document.getElementById('k-subs').textContent     = d.subscribers ?? 0;
+    document.getElementById('k-attempts').textContent = d.quiz_attempts ?? 0;
+    document.getElementById('k-avg').textContent      = (d.quiz_avg ?? 0) + '%';
+    document.getElementById('k-reports').textContent  = d.reports ?? 0;
+    document.getElementById('k-visits').textContent   = d.visits ?? 0;
+
+    // Score distribution
+    const dist = d.score_distribution || {};
+    const distMax = Math.max(...Object.values(dist), 1);
+    const distColors = { '0-39': 'var(--red)', '40-59': 'var(--yellow)', '60-79': 'var(--blue)', '80-100': 'var(--green)' };
+    document.getElementById('dist-chart').innerHTML = Object.entries(dist).map(([k, v]) => `
+      <div class="dist-row">
+        <span class="dist-label">${k}%</span>
+        <div class="dist-bar">
+          <div class="dist-fill" style="width:${Math.round(v/distMax*100)}%;background:${distColors[k]};color:#fff">${v > 0 ? v : ''}</div>
+        </div>
+        <span class="dist-count">${v}</span>
+      </div>`).join('') || '<div class="empty">No data yet</div>';
+
+    // Threat types
+    const threats = d.top_threats || [];
+    const tMax = threats[0]?.count || 1;
+    document.getElementById('threats-chart').innerHTML = threats.length
+      ? threats.map(t => `
+        <div class="bar-row">
+          <span class="bar-label">${t.threat_type.replace('_', ' ')}</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(t.count/tMax*100)}%;background:var(--red)"></div></div>
+          <span class="bar-count">${t.count}</span>
+        </div>`).join('')
+      : '<div class="empty">No reports yet</div>';
+
+    // Recent quiz
+    const quizRows = d.recent_quiz || [];
+    document.getElementById('quiz-table').innerHTML = quizRows.length
+      ? `<table><thead><tr><th>Score</th><th>Pct</th><th>Date</th></tr></thead><tbody>${
+          quizRows.map(r => `<tr>
+            <td>${r.score}/${r.total}</td>
+            <td><span style="color:${scoreColor(r.pct)};font-weight:600">${r.pct}%</span></td>
+            <td style="color:var(--muted)">${r.created_at}</td>
+          </tr>`).join('')
+        }</tbody></table>`
+      : '<div class="empty">No submissions yet</div>';
+
+    // Recent reports
+    const repRows = d.recent_reports || [];
+    document.getElementById('reports-table').innerHTML = repRows.length
+      ? `<table><thead><tr><th>Type</th><th>Description</th><th>Date</th></tr></thead><tbody>${
+          repRows.map(r => `<tr>
+            <td><span class="badge ${BADGE_COLORS[r.threat_type] || 'badge-blue'}">${r.threat_type.replace('_',' ')}</span></td>
+            <td style="color:var(--muted)">${r.description ? r.description.slice(0,40)+'…' : '—'}</td>
+            <td style="color:var(--muted)">${r.created_at}</td>
+          </tr>`).join('')
+        }</tbody></table>`
+      : '<div class="empty">No reports yet</div>';
+
+    // Section engagement
+    const secs = d.top_sections || [];
+    const secMax = secs[0]?.count || 1;
+    document.getElementById('sections-chart').innerHTML = secs.length
+      ? secs.map(s => `
+        <div class="bar-row">
+          <span class="bar-label" style="min-width:90px">${s.section}</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(s.count/secMax*100)}%;background:var(--blue)"></div></div>
+          <span class="bar-count">${s.count}</span>
+        </div>`).join('')
+      : '<div class="empty">No visits tracked yet</div>';
+
+    document.getElementById('last-updated').textContent =
+      'Last updated: ' + new Date().toLocaleTimeString();
+
+  } catch(e) {
+    document.getElementById('last-updated').textContent = 'Error loading data. Is the server running?';
+  }
+}
+
+loadStats();
+setInterval(loadStats, 30000); // auto-refresh every 30s
+</script>
+</body>
+</html>

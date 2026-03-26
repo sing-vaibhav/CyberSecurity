@@ -1,0 +1,64 @@
+[INFO] 2026-03-26 12:07:24,096 autoreload: Watching for file changes with StatReloader
+[WARNING] 2026-03-26 12:07:36,312 log: Not Found: /
+[WARNING] 2026-03-26 12:07:36,368 log: Not Found: /favicon.ico
+[WARNING] 2026-03-26 12:08:45,691 log: Method Not Allowed (GET): /awareness/api/quiz/
+[WARNING] 2026-03-26 12:08:47,887 log: Method Not Allowed (GET): /awareness/api/quiz/
+[WARNING] 2026-03-26 12:10:01,738 log: Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2026-03-26 12:11:22,782 log: Not Found: /dashboard
+[WARNING] 2026-03-26 12:11:27,208 log: Not Found: /dashboard/
+[INFO] 2026-03-26 12:15:18,515 autoreload: Watching for file changes with StatReloader
+[WARNING] 2026-03-26 12:15:33,329 log: Not Found: /
+[WARNING] 2026-03-26 12:15:40,621 log: Not Found: /dashboard
+[WARNING] 2026-03-26 12:16:00,832 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:08,931 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:09,945 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:11,046 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:12,174 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:13,649 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:29,055 log: Not Found: /dashboard/
+[WARNING] 2026-03-26 12:16:38,618 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:40,074 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:41,039 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:16:42,685 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:18:50,474 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:19:42,272 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:44,594 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:45,027 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:45,219 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:45,440 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:45,619 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:47,445 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:47,671 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:47,845 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:48,025 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:48,214 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:48,408 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:48,566 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:58,771 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:58,996 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:19:59,187 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:20:01,020 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:20:01,634 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:20:02,397 log: Not Found: /api/track/
+[WARNING] 2026-03-26 12:20:03,930 log: Not Found: /api/quiz/
+[WARNING] 2026-03-26 12:20:04,399 log: Not Found: /api/quiz/
+[INFO] 2026-03-26 12:21:57,007 autoreload: Watching for file changes with StatReloader
+[WARNING] 2026-03-26 12:22:50,411 log: Not Found: /
+[WARNING] 2026-03-26 12:22:51,086 log: Not Found: /
+[INFO] 2026-03-26 12:23:53,689 autoreload: D:\CyberSecurity\cybershield\cybershield\cybershield\urls.py changed, reloading.
+[INFO] 2026-03-26 12:23:54,237 autoreload: Watching for file changes with StatReloader
+[INFO] 2026-03-26 12:23:55,456 autoreload: D:\CyberSecurity\cybershield\cybershield\cybershield\urls.py changed, reloading.
+[INFO] 2026-03-26 12:23:55,981 autoreload: Watching for file changes with StatReloader
+[WARNING] 2026-03-26 12:25:04,323 log: Bad Request: /api/subscribe/
+[INFO] 2026-03-26 12:25:26,372 views: New subscriber: vaibhav.2406917101@vcet.edu.in (hash 12ca17b49af22894)
+[INFO] 2026-03-26 12:39:57,155 autoreload: D:\CyberSecurity\cybershield\cybershield\awareness\urls.py changed, reloading.
+[INFO] 2026-03-26 12:39:58,885 autoreload: Watching for file changes with StatReloader
+[INFO] 2026-03-26 12:40:32,808 autoreload: D:\CyberSecurity\cybershield\cybershield\awareness\views.py changed, reloading.
+[INFO] 2026-03-26 12:40:33,321 autoreload: Watching for file changes with StatReloader
+[INFO] 2026-03-26 12:40:35,606 autoreload: D:\CyberSecurity\cybershield\cybershield\awareness\views.py changed, reloading.
+[INFO] 2026-03-26 12:40:36,127 autoreload: Watching for file changes with StatReloader
+[INFO] 2026-03-26 12:43:28,239 views: New subscriber: admon@gmail.com (hash 12ca17b49af22894)
+[INFO] 2026-03-26 12:43:47,336 views: New subscriber: 4+44+99618494198@gmail.com (hash 12ca17b49af22894)
+[WARNING] 2026-03-26 12:50:51,847 log: Not Found: /awareness/resources.html
+[WARNING] 2026-03-26 12:54:15,047 log: Not Found: /resources.html
+[WARNING] 2026-03-26 12:54:16,901 log: Not Found: /resources.html

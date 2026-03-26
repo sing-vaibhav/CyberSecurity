@@ -1,0 +1,557 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Learn Cybersecurity — CyberShield Resources</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0f1117;--ink2:#3a3f50;--ink3:#7a8099;
+  --paper:#faf9f7;--paper2:#f0ede8;--paper3:#e8e4dd;
+  --red:#d93b3b;--red-bg:#fdf0f0;
+  --green:#1a7a4a;--green-bg:#edf7f2;
+  --orange:#c45d1a;--orange-bg:#fdf3ec;
+  --blue:#1a55a0;--blue-bg:#edf2fc;
+  --purple:#6d28d9;--purple-bg:#f5f3ff;
+  --serif:'DM Serif Display',serif;
+  --sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6}
+
+/* NAV */
+nav{padding:18px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--paper2);position:sticky;top:0;background:rgba(250,249,247,.95);backdrop-filter:blur(8px);z-index:50}
+.logo{font-family:var(--serif);font-size:1.2rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;background:var(--red);border-radius:50%}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-pill{background:transparent;border:1px solid var(--paper2);color:var(--ink2);padding:7px 15px;border-radius:100px;font-family:var(--sans);font-size:.8rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .2s}
+.nav-pill:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nav-pill.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* HERO */
+.hero{padding:72px 5% 56px;text-align:center;max-width:800px;margin:0 auto}
+.hero-eyebrow{display:inline-block;background:var(--purple-bg);color:var(--purple);font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.15;margin-bottom:16px}
+h1 em{font-style:normal;color:var(--purple)}
+.hero-sub{color:var(--ink2);font-size:1rem;max-width:520px;margin:0 auto;line-height:1.75;font-weight:300}
+
+/* FILTER BAR */
+.filter-bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:32px 5% 0}
+.filter-btn{background:var(--paper2);border:1px solid transparent;color:var(--ink2);padding:8px 18px;border-radius:100px;font-family:var(--sans);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s}
+.filter-btn:hover{border-color:var(--ink3)}
+.filter-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* SECTION */
+.section{padding:52px 5%;max-width:1140px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.section-title{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:32px;line-height:1.2}
+.divider{height:1px;background:var(--paper2);max-width:1140px;margin:0 auto}
+
+/* PLATFORM CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--paper);border:1px solid var(--paper2);border-radius:14px;padding:26px;transition:all .25s;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;position:relative;overflow:hidden}
+.card::after{content:'↗';position:absolute;top:20px;right:20px;font-size:1rem;color:var(--ink3);transition:all .25s}
+.card:hover{border-color:var(--ink3);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.07)}
+.card:hover::after{color:var(--ink);transform:translate(2px,-2px)}
+.card-top{display:flex;align-items:center;gap:12px}
+.card-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.card-name{font-weight:700;font-size:1rem;color:var(--ink)}
+.card-tagline{font-size:.78rem;color:var(--ink3);margin-top:1px}
+.card-desc{font-size:.85rem;color:var(--ink2);line-height:1.65;flex:1}
+.card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap}
+.tag{font-size:.65rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:100px}
+.tag-free{background:var(--green-bg);color:var(--green)}
+.tag-paid{background:var(--orange-bg);color:var(--orange)}
+.tag-freemium{background:var(--blue-bg);color:var(--blue)}
+.tag-beginner{background:var(--paper2);color:var(--ink3)}
+.tag-intermediate{background:#fef3c7;color:#92400e}
+.tag-advanced{background:var(--red-bg);color:var(--red)}
+.tag-cert{background:var(--purple-bg);color:var(--purple)}
+
+/* ICON BACKGROUNDS */
+.icon-red{background:var(--red-bg)}
+.icon-green{background:var(--green-bg)}
+.icon-blue{background:var(--blue-bg)}
+.icon-orange{background:var(--orange-bg)}
+.icon-purple{background:var(--purple-bg)}
+.icon-yellow{background:#fef3c7}
+.icon-dark{background:#1e293b}
+.icon-teal{background:#e6fffa}
+.icon-pink{background:#fdf2f8}
+
+/* LEVEL BADGE on card */
+.level-bar{height:2px;background:var(--paper2);border-radius:1px;overflow:hidden;margin-top:4px}
+.level-fill{height:100%;border-radius:1px}
+.level-1{width:33%;background:var(--green)}
+.level-2{width:66%;background:var(--orange)}
+.level-3{width:100%;background:var(--red)}
+
+/* YOUTUBE / FREE SECTION */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.yt-card{background:var(--paper);border:1px solid var(--paper2);border-radius:12px;padding:20px;transition:all .2s;text-decoration:none;color:inherit;display:flex;gap:14px;align-items:flex-start}
+.yt-card:hover{border-color:var(--ink3);transform:translateY(-2px)}
+.yt-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;background:#fee2e2}
+.yt-card h4{font-size:.9rem;font-weight:600;margin-bottom:4px;color:var(--ink)}
+.yt-card p{font-size:.78rem;color:var(--ink3);line-height:1.55}
+
+/* ROADMAP */
+.roadmap{display:flex;flex-direction:column;gap:0}
+.roadmap-step{display:flex;gap:20px;position:relative}
+.roadmap-step:not(:last-child)::before{content:'';position:absolute;left:19px;top:44px;width:1px;height:calc(100% + 0px);background:var(--paper3)}
+.step-circle{width:40px;height:40px;border-radius:50%;border:2px solid var(--paper3);background:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1rem;color:var(--red);flex-shrink:0;z-index:1}
+.step-body{padding:8px 0 32px}
+.step-body h4{font-weight:600;font-size:.95rem;margin-bottom:6px;color:var(--ink)}
+.step-body p{font-size:.83rem;color:var(--ink2);line-height:1.65;max-width:520px}
+.step-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.step-link{background:var(--paper2);color:var(--ink2);font-size:.75rem;font-weight:500;padding:5px 12px;border-radius:100px;text-decoration:none;transition:all .2s;border:1px solid transparent}
+.step-link:hover{background:var(--ink);color:var(--paper)}
+
+/* CERT TABLE */
+.cert-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.cert-table th{text-align:left;color:var(--ink3);font-size:.7rem;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:0 12px 12px 0;border-bottom:1px solid var(--paper2)}
+.cert-table td{padding:14px 12px 14px 0;border-bottom:1px solid var(--paper2);vertical-align:top}
+.cert-table tr:last-child td{border-bottom:none}
+.cert-name{font-weight:600;color:var(--ink)}
+.cert-org{font-size:.75rem;color:var(--ink3);margin-top:2px}
+
+/* CTA BANNER */
+.cta-banner{background:var(--ink);color:var(--paper);border-radius:16px;padding:40px;text-align:center;margin:0 5% 64px;max-width:1140px;margin-left:auto;margin-right:auto}
+.cta-banner h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px}
+.cta-banner p{color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:28px;line-height:1.75}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:var(--paper);color:var(--ink);padding:12px 28px;border-radius:8px;font-weight:600;font-size:.88rem;text-decoration:none;transition:all .2s}
+.btn-white:hover{background:var(--paper2)}
+.btn-outline-white{background:transparent;color:rgba(255,255,255,.7);padding:12px 28px;border-radius:8px;font-weight:500;font-size:.88rem;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+.btn-outline-white:hover{border-color:rgba(255,255,255,.5);color:#fff}
+
+/* FOOTER */
+footer{background:var(--ink);color:rgba(255,255,255,.4);text-align:center;padding:32px 5%;font-size:.78rem;line-height:1.9}
+footer strong{color:rgba(255,255,255,.7)}
+footer a{color:rgba(255,255,255,.45);text-decoration:none}
+footer a:hover{color:rgba(255,255,255,.7)}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.fade.in{opacity:1;transform:none}
+
+/* HIDDEN for filter */
+.card.hidden,.yt-card.hidden{display:none}
+
+@media(max-width:640px){
+  .nav-links .nav-pill:not(.active):not(:last-child){display:none}
+  .section{padding:40px 4%}
+  .hero{padding:52px 4% 40px}
+  .cta-banner{margin:0 4% 48px;padding:28px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="/"><span class="logo-dot"></span>Stay Safe Online</a>
+  <div class="nav-links">
+    <a class="nav-pill" href="/">Home</a>
+    <a class="nav-pill" href="/#quiz">Quiz</a>
+    <a class="nav-pill" href="/#report">Report</a>
+    <a class="nav-pill active" href="/resources/">Resources</a>
+    <a class="nav-pill" href="/dashboard/">Dashboard</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero fade">
+  <span class="hero-eyebrow">Free &amp; Paid Learning</span>
+  <h1>Start Your <em>Cybersecurity</em><br/>Learning Journey</h1>
+  <p class="hero-sub">Hand-picked platforms, YouTube channels, certifications, and a step-by-step roadmap — from complete beginner to professional.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar fade">
+  <button class="filter-btn active" onclick="filter('all')">All</button>
+  <button class="filter-btn" onclick="filter('free')">Free</button>
+  <button class="filter-btn" onclick="filter('freemium')">Freemium</button>
+  <button class="filter-btn" onclick="filter('paid')">Paid</button>
+  <button class="filter-btn" onclick="filter('beginner')">Beginner</button>
+  <button class="filter-btn" onclick="filter('advanced')">Advanced</button>
+  <button class="filter-btn" onclick="filter('cert')">Has Certificate</button>
+</div>
+
+<!-- PLATFORMS -->
+<div class="section" id="platforms">
+  <p class="section-label fade">Hands-On Platforms</p>
+  <h2 class="section-title fade">Learn by doing — real labs &amp; challenges</h2>
+  <div class="cards-grid fade">
+
+    <a class="card" href="https://tryhackme.com" target="_blank" data-tags="freemium beginner intermediate cert">
+      <div class="card-top">
+        <div class="card-icon icon-red">🛡️</div>
+        <div><div class="card-name">TryHackMe</div><div class="card-tagline">tryhackme.com</div></div>
+      </div>
+      <p class="card-desc">The best starting point for beginners. Browser-based labs, guided learning paths, and a huge community. Covers networking, web hacking, forensics, and more — no setup needed.</p>
+      <div class="level-bar"><div class="level-fill level-1"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-freemium">Freemium</span>
+          <span class="tag tag-beginner">Beginner</span>
+          <span class="tag tag-cert">Certificate</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://hackthebox.com" target="_blank" data-tags="freemium intermediate advanced cert">
+      <div class="card-top">
+        <div class="card-icon icon-green">📦</div>
+        <div><div class="card-name">Hack The Box</div><div class="card-tagline">hackthebox.com</div></div>
+      </div>
+      <p class="card-desc">Industry-standard CTF platform used by professionals worldwide. Real machines to hack, active directory labs, and HTB Academy for structured learning. Highly respected by employers.</p>
+      <div class="level-bar"><div class="level-fill level-2"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-freemium">Freemium</span>
+          <span class="tag tag-intermediate">Intermediate</span>
+          <span class="tag tag-cert">Certificate</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://picoctf.org" target="_blank" data-tags="free beginner">
+      <div class="card-top">
+        <div class="card-icon icon-blue">🏁</div>
+        <div><div class="card-name">picoCTF</div><div class="card-tagline">picoctf.org</div></div>
+      </div>
+      <p class="card-desc">Free CTF (Capture The Flag) platform by Carnegie Mellon University. Perfect for absolute beginners — fun, game-like challenges covering cryptography, web, forensics, and binary exploitation.</p>
+      <div class="level-bar"><div class="level-fill level-1"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-beginner">Beginner</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://cyberdefenders.org" target="_blank" data-tags="freemium intermediate cert">
+      <div class="card-top">
+        <div class="card-icon icon-teal">🔎</div>
+        <div><div class="card-name">CyberDefenders</div><div class="card-tagline">cyberdefenders.org</div></div>
+      </div>
+      <p class="card-desc">Blue team focused platform — learn to detect, investigate, and respond to real attacks. Great for those interested in SOC analyst, DFIR, and threat hunting careers.</p>
+      <div class="level-bar"><div class="level-fill level-2"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-freemium">Freemium</span>
+          <span class="tag tag-intermediate">Intermediate</span>
+          <span class="tag tag-cert">Certificate</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://overthewire.org/wargames/" target="_blank" data-tags="free beginner intermediate">
+      <div class="card-top">
+        <div class="card-icon icon-dark" style="color:#fff">⚔️</div>
+        <div><div class="card-name">OverTheWire</div><div class="card-tagline">overthewire.org</div></div>
+      </div>
+      <p class="card-desc">Classic Linux and security wargames played through your terminal via SSH. Start with Bandit (Linux basics) and progress to harder games. Completely free, no account needed.</p>
+      <div class="level-bar"><div class="level-fill level-1"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-beginner">Beginner</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://portswigger.net/web-security" target="_blank" data-tags="free intermediate advanced cert">
+      <div class="card-top">
+        <div class="card-icon icon-orange">🕸️</div>
+        <div><div class="card-name">PortSwigger Web Academy</div><div class="card-tagline">portswigger.net</div></div>
+      </div>
+      <p class="card-desc">The definitive free resource for web application security. Learn SQL injection, XSS, CSRF, SSRF, and every OWASP vulnerability with interactive labs built by the makers of Burp Suite.</p>
+      <div class="level-bar"><div class="level-fill level-2"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-free">Free</span>
+          <span class="tag tag-intermediate">Intermediate</span>
+          <span class="tag tag-cert">Certificate</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://letsdefend.io" target="_blank" data-tags="freemium beginner intermediate cert">
+      <div class="card-top">
+        <div class="card-icon icon-blue">🖥️</div>
+        <div><div class="card-name">LetsDefend</div><div class="card-tagline">letsdefend.io</div></div>
+      </div>
+      <p class="card-desc">Simulate working as a SOC analyst — investigate real alerts, analyse malware, and respond to incidents on a simulated SIEM dashboard. Ideal for blue team career preparation.</p>
+      <div class="level-bar"><div class="level-fill level-1"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-freemium">Freemium</span>
+          <span class="tag tag-beginner">Beginner</span>
+          <span class="tag tag-cert">Certificate</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://www.offensive-security.com/pwk-oscp/" target="_blank" data-tags="paid advanced cert">
+      <div class="card-top">
+        <div class="card-icon icon-red">💀</div>
+        <div><div class="card-name">Offensive Security (OSCP)</div><div class="card-tagline">offensive-security.com</div></div>
+      </div>
+      <p class="card-desc">The gold standard penetration testing certification. PEN-200 course + 24-hour practical exam. Extremely challenging — proof that you can actually hack, not just study theory.</p>
+      <div class="level-bar"><div class="level-fill level-3"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-advanced">Advanced</span>
+          <span class="tag tag-cert">OSCP Cert</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card" href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" data-tags="paid beginner cert">
+      <div class="card-top">
+        <div class="card-icon icon-yellow">🎓</div>
+        <div><div class="card-name">Google Cybersecurity Certificate</div><div class="card-tagline">coursera.org / Google</div></div>
+      </div>
+      <p class="card-desc">Google's official beginner cybersecurity programme on Coursera. Covers fundamentals, tools like Splunk and Chronicle, Python scripting, and prepares you for CompTIA Security+.</p>
+      <div class="level-bar"><div class="level-fill level-1"></div></div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-paid">Paid</span>
+          <span class="tag tag-beginner">Beginner</span>
+          <span class="tag tag-cert">Google Cert</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- YOUTUBE CHANNELS -->
+<div class="section" id="youtube">
+  <p class="section-label fade">Free on YouTube</p>
+  <h2 class="section-title fade">Top YouTube channels — completely free</h2>
+  <div class="yt-grid fade">
+
+    <a class="yt-card" href="https://youtube.com/@NetworkChuck" target="_blank">
+      <div class="yt-icon">📡</div>
+      <div><h4>NetworkChuck</h4><p>Networking, ethical hacking, Linux, and cloud — delivered with high energy. Great for absolute beginners.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@davidbombal" target="_blank">
+      <div class="yt-icon">🔧</div>
+      <div><h4>David Bombal</h4><p>Deep dives into ethical hacking, Python scripting, networking, and certification prep (CEH, CCNA).</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@JohnHammond010" target="_blank">
+      <div class="yt-icon">🏴</div>
+      <div><h4>John Hammond</h4><p>CTF walkthroughs, malware analysis, and cybersecurity career advice. Excellent for learning by watching real hacking.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@TCMSecurityAcademy" target="_blank">
+      <div class="yt-icon">🎯</div>
+      <div><h4>TCM Security</h4><p>Practical ethical hacking tutorials and free courses. Highly respected in the penetration testing community.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@liveoverflow" target="_blank">
+      <div class="yt-icon">🧬</div>
+      <div><h4>LiveOverflow</h4><p>Binary exploitation, CTF challenges, and the mindset of a hacker. Best for those wanting to go deep technically.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@professormesser" target="_blank">
+      <div class="yt-icon">📚</div>
+      <div><h4>Professor Messer</h4><p>Free CompTIA Security+, A+, and Network+ exam preparation. Clear, structured, and completely free video courses.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@InsiderPhD" target="_blank">
+      <div class="yt-icon">🐛</div>
+      <div><h4>InsiderPhD</h4><p>Bug bounty hunting tutorials and web security research. Great for learning how to find vulnerabilities responsibly.</p></div>
+    </a>
+
+    <a class="yt-card" href="https://youtube.com/@hak5darren" target="_blank">
+      <div class="yt-icon">⚡</div>
+      <div><h4>Hak5</h4><p>Hardware hacking, penetration testing tools, and security news. One of the longest-running cybersecurity channels.</p></div>
+    </a>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<div class="section" id="roadmap">
+  <p class="section-label fade">Learning Roadmap</p>
+  <h2 class="section-title fade">Where to start — and where to go next</h2>
+  <div class="roadmap fade">
+
+    <div class="roadmap-step">
+      <div class="step-circle">1</div>
+      <div class="step-body">
+        <h4>Build Your Foundation (1–2 months)</h4>
+        <p>Learn how computers and networks work. Understand IP addresses, TCP/IP, DNS, HTTP, and the Linux command line. This is the bedrock everything else builds on.</p>
+        <div class="step-links">
+          <a class="step-link" href="https://tryhackme.com/path/outline/presecurity" target="_blank">THM: Pre-Security Path</a>
+          <a class="step-link" href="https://overthewire.org/wargames/bandit/" target="_blank">OverTheWire: Bandit</a>
+          <a class="step-link" href="https://youtube.com/@NetworkChuck" target="_blank">NetworkChuck on YouTube</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-step">
+      <div class="step-circle">2</div>
+      <div class="step-body">
+        <h4>Learn Security Fundamentals (2–3 months)</h4>
+        <p>Study core security concepts — CIA triad, firewalls, encryption, authentication, vulnerabilities, and how common attacks work. Google's free certificate covers this well.</p>
+        <div class="step-links">
+          <a class="step-link" href="https://tryhackme.com/path/outline/jrpenetrationtester" target="_blank">THM: Jr Pentester Path</a>
+          <a class="step-link" href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank">Google Cyber Certificate</a>
+          <a class="step-link" href="https://youtube.com/@professormesser" target="_blank">Professor Messer</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-step">
+      <div class="step-circle">3</div>
+      <div class="step-body">
+        <h4>Pick a Specialisation (3–6 months)</h4>
+        <p>Choose your path: <strong>Offensive (Red Team)</strong> — ethical hacking, penetration testing, CTFs. Or <strong>Defensive (Blue Team)</strong> — SOC analyst, incident response, threat hunting. Both are in high demand.</p>
+        <div class="step-links">
+          <a class="step-link" href="https://hackthebox.com" target="_blank">Red: Hack The Box</a>
+          <a class="step-link" href="https://portswigger.net/web-security" target="_blank">Red: Web Security Academy</a>
+          <a class="step-link" href="https://letsdefend.io" target="_blank">Blue: LetsDefend</a>
+          <a class="step-link" href="https://cyberdefenders.org" target="_blank">Blue: CyberDefenders</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-step">
+      <div class="step-circle">4</div>
+      <div class="step-body">
+        <h4>Get Certified (ongoing)</h4>
+        <p>Certifications prove your skills to employers. Start with CompTIA Security+ (entry level), then progress to CEH, OSCP, or cloud security certs depending on your path.</p>
+        <div class="step-links">
+          <a class="step-link" href="https://www.comptia.org/certifications/security" target="_blank">CompTIA Security+</a>
+          <a class="step-link" href="https://www.offensive-security.com/pwk-oscp/" target="_blank">OSCP (Advanced)</a>
+          <a class="step-link" href="https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/" target="_blank">CEH</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="roadmap-step">
+      <div class="step-circle">5</div>
+      <div class="step-body">
+        <h4>Build a Portfolio &amp; Get Hired</h4>
+        <p>Document your CTF writeups on a blog or GitHub. Try bug bounty on HackerOne or Bugcrowd. Contribute to open source security tools. Your public work is your CV.</p>
+        <div class="step-links">
+          <a class="step-link" href="https://hackerone.com" target="_blank">HackerOne Bug Bounty</a>
+          <a class="step-link" href="https://bugcrowd.com" target="_blank">Bugcrowd</a>
+          <a class="step-link" href="https://github.com" target="_blank">GitHub Portfolio</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS TABLE -->
+<div class="section" id="certs">
+  <p class="section-label fade">Certifications</p>
+  <h2 class="section-title fade">Industry-recognised certifications</h2>
+  <table class="cert-table fade">
+    <thead>
+      <tr>
+        <th>Certification</th>
+        <th>Level</th>
+        <th>Focus</th>
+        <th>Cost (approx)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="cert-name">CompTIA Security+</div><div class="cert-org">CompTIA</div></td>
+        <td><span class="tag tag-beginner">Beginner</span></td>
+        <td>Security fundamentals, widely accepted by employers</td>
+        <td>~$392</td>
+      </tr>
+      <tr>
+        <td><div class="cert-name">Google Cybersecurity Certificate</div><div class="cert-org">Google / Coursera</div></td>
+        <td><span class="tag tag-beginner">Beginner</span></td>
+        <td>SOC tools, Python, threat detection</td>
+        <td>~$49/mo</td>
+      </tr>
+      <tr>
+        <td><div class="cert-name">CEH — Certified Ethical Hacker</div><div class="cert-org">EC-Council</div></td>
+        <td><span class="tag tag-intermediate">Intermediate</span></td>
+        <td>Ethical hacking methodology and tools</td>
+        <td>~$1,199</td>
+      </tr>
+      <tr>
+        <td><div class="cert-name">eJPT — eLearnSecurity Junior Pentester</div><div class="cert-org">INE / eLearnSecurity</div></td>
+        <td><span class="tag tag-beginner">Beginner</span></td>
+        <td>Practical pentesting entry cert, affordable</td>
+        <td>~$200</td>
+      </tr>
+      <tr>
+        <td><div class="cert-name">OSCP — Offensive Security Certified Professional</div><div class="cert-org">Offensive Security</div></td>
+        <td><span class="tag tag-advanced">Advanced</span></td>
+        <td>Hands-on penetration testing, 24hr practical exam</td>
+        <td>~$1,499</td>
+      </tr>
+      <tr>
+        <td><div class="cert-name">CISSP — Certified Information Systems Security Professional</div><div class="cert-org">ISC²</div></td>
+        <td><span class="tag tag-advanced">Advanced</span></td>
+        <td>Security management, architecture — needs 5yr experience</td>
+        <td>~$749</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner fade">
+  <h2>Don't just read — start doing today</h2>
+  <p>The best way to learn cybersecurity is hands-on. Create a free TryHackMe account right now and complete your first room in under an hour.</p>
+  <div class="cta-btns">
+    <a class="btn-white" href="https://tryhackme.com" target="_blank">Start on TryHackMe →</a>
+    <a class="btn-outline-white" href="/" >← Back to Safety Tips</a>
+  </div>
+</div>
+
+<footer>
+  <strong>Stay Safe Online — CyberShield</strong><br/>
+  <a href="/">Home</a> &nbsp;·&nbsp;
+  <a href="/resources/">Resources</a> &nbsp;·&nbsp;
+  <a href="/dashboard/">Dashboard</a> &nbsp;·&nbsp;
+  <a href="/admin/">Admin</a>
+</footer>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .08 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Filter
+function filter(type) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  document.querySelectorAll('.card').forEach(card => {
+    if (type === 'all') {
+      card.classList.remove('hidden');
+    } else {
+      const tags = card.dataset.tags || '';
+      tags.includes(type) ? card.classList.remove('hidden') : card.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
