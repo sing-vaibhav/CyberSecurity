@@ -62,3 +62,5 @@
 [WARNING] 2026-03-26 12:50:51,847 log: Not Found: /awareness/resources.html
 [WARNING] 2026-03-26 12:54:15,047 log: Not Found: /resources.html
 [WARNING] 2026-03-26 12:54:16,901 log: Not Found: /resources.html
+[INFO] 2026-03-26 14:06:40,887 autoreload: Watching for file changes with StatReloader
+[WARNING] 2026-03-26 14:07:02,734 log: Not Found: /favicon.ico
